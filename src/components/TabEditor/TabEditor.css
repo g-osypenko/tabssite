@@ -3,39 +3,45 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  background-color: #1e1e1e;
-  color: white;
+  background-color: #ffffff;
+  color: rgb(255, 255, 255);
 }
 
 .tab-header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #3a3a3a;
-  padding: 10px;
+  background-color: #2d2d2d;
+  padding: 15px;
   border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
 
-.play, .stop {
-  background-color: #28a745;
-  color: white;
+/* .play, .stop {
+  display: flex;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
   border: none;
   padding: 8px 12px;
-  margin-left: 5px;
   cursor: pointer;
   border-radius: 5px;
-}
+  margin-left: -500px;
+}*/
 
 .stop {
-  background-color: #dc3545;
+  background-color: #ffffff;
 }
 
 .tab-container {
   flex: 1;
   background-color: white;
-  color: black;
+  color: rgb(0, 0, 0);
   padding: 20px;
   border-radius: 5px;
-  margin-top: 20px;
+  margin-top: 35px;
   text-align: center;
 }
