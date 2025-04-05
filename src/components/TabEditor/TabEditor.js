@@ -5,8 +5,8 @@ const TabEditor = () => {
   return (
     <main className="tab-editor">
       <header className="tab-header">
-        <span>Tab Editor</span>
-        <div>
+        <span className="tab-title">Tab Editor</span>
+        <div className="tab-header-buttons">
           <button className="play">▶</button>
           <button className="stop">⏹</button>
         </div>
