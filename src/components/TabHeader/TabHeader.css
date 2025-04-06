@@ -1,13 +1,6 @@
-.tab-editor {
-  display: flex;
-  flex: 1;
-  padding: 0px;
-  flex-direction: column;
-  background-color: #ffffff;
-  color: rgb(255, 255, 255);
-}
 
-/*.tab-header {
+
+.tab-header {
   display: flex;
   flex: 1;
   width: 100%;
@@ -17,12 +10,12 @@
   padding: 15px;
   border-radius: 0px;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 0px;
   z-index: 10;
-}*/
+}
 
-/*.play,
+.play,
 .stop {
   background-color: #ffffff;
   color: #000000;
@@ -32,25 +25,15 @@
   border-radius: 5px;
   font-size: 16px;
   transition: background-color 0.2s ease;
-}*/
-
-/*.play:hover,
-.stop:hover {
-  background-color: #ddd;
-}*/
-
-.tab-container {
-  display: flex;
-  flex: 1;
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-  padding: 0px;
-  border-radius: 5px;
-  text-align: center;
 }
 
-/*.tab-header-buttons {
+.play:hover,
+.stop:hover {
+  background-color: #ddd;
+}
+
+.tab-header-buttons {
   display: flex;
 
   gap: 10px; 
-}*/
+}
