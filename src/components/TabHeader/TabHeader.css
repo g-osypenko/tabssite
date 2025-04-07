@@ -16,6 +16,11 @@
   z-index: 10;
 }
 
+.tab-header-buttons {
+  display: flex;
+  gap: 10px; 
+}
+
 .play {
   background-color: #ffffff;
   color: #000000;
@@ -30,11 +35,6 @@
 
 .play:hover {
   background-color: #ddd;
-}
-
-.tab-header-buttons {
-  display: flex;
-  gap: 10px; 
 }
 
 .metronomeButton{
