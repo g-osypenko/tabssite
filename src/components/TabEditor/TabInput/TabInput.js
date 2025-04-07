@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './TabInput.css';
 
 const TabInput = () => {
-  const [tabData, setTabData] = useState({
+  const [, setTabData] = useState({
     1: '',
     2: '',
     3: '',

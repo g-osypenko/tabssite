@@ -24,7 +24,7 @@ const TabHeader = () => {
         </button>
 
         <button className="metronomeButton">
-        <img src={metronomePIC} alt Metronome/>
+        <img src={metronomePIC} alt="Metronome"/>
         </button>
       </div>
     </header>
