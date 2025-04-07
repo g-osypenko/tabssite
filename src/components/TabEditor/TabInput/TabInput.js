@@ -19,32 +19,47 @@ const TabInput = () => {
     }));
   };
 
+  const stringNames = ['E', 'B', 'G', 'D', 'A', 'E']; // знизу вгору
+
   return (
     <div className="tab-input">
       <div className="tabs-wrapper">
-        <div className="strings">
-          <div className="svg-strings">
-            <svg width="30px" height="180px">
-            <text x="0" y="20" fontSize="16" fill="#888888" pointerEvents="none">E</text>
-            <text x="0" y="40" fontSize="16" fill="#888888" pointerEvents="none">B</text>
-            <text x="0" y="60" fontSize="16" fill="#888888" pointerEvents="none">G</text>
-            <text x="0" y="80" fontSize="16" fill="#888888" pointerEvents="none">D</text>
-            <text x="0" y="100" fontSize="16" fill="#888888" pointerEvents="none">A</text>
-            <text x="0" y="120" fontSize="16" fill="#888888" pointerEvents="none">E</text>
-            </svg>
-          </div>
+        {/* Назви струн */}
+        <div className="svg-strings">
+          <svg width="30px" height="180px">
+            {stringNames.map((note, index) => (
+              <text
+                key={index}
+                x="10"
+                y={(index * 30) + 22}
+                fontSize="16"
+                fill="#888888"
+                pointerEvents="none"
+              >
+                {note}
+              </text>
+            ))}
+          </svg>
         </div>
+
+        {/* Рядки для табів */}
         <div className="tabs-container">
-          {[1, 2, 3, 4, 5, 6].map((lineNumber) => (
-            <div
-              key={lineNumber}
-              className="tab-line"
-              contentEditable
-              suppressContentEditableWarning
-              onInput={(e) => handleInputChange(e, lineNumber)}
-              placeholder={`Струна ${lineNumber}`}
-            />
-          ))}
+          {stringNames.map((_, index) => {
+            const lineNumber = index + 1;
+            return (
+              <div
+                key={lineNumber}
+                className="tab-line"
+                contentEditable
+                suppressContentEditableWarning
+                spellCheck={false}
+                onInput={(e) => handleInputChange(e, lineNumber)}
+              >
+                {/* Початково можна вставити риски */}
+                {/* ---|---|---|---|--- */}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
 .tabs-wrapper {
@@ -10,53 +11,27 @@
   align-items: flex-start;
 }
 
-.strings {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
 .svg-strings {
-  display: flex;
-  line-height: 1.5;
-  letter-spacing: 1px;
-  flex-direction: column;
-  justify-content: space-evenly;
-  height: 180px;
+  margin-right: 10px;
 }
 
 .tabs-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-left: 10px;
 }
 
 .tab-line {
-  width: 50px;
-  height: 30px;
-  text-align: center;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  margin-bottom: 10px;
-  white-space: nowrap;
-  min-width: 30px;
-}
-
-.tab-line:empty:before {
-  content: " ";
-  background: transparent;
-}
-
-.tab-line[contenteditable="true"]:empty:before {
-  content: " ";
-}
-
-.tabs-container div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
+  width: 300px;                /* ширина всієї лінії табів */
+  height: 30px;                /* висота одного рядка */
+  line-height: 30px;           /* вирівнювання тексту по центру вертикалі */
+  font-size: 18px;             /* розмір шрифту */
+  font-family: monospace;      /* моноширинний шрифт для табів */
+  border-bottom: 1px solid #aaa; /* рисочка як у табулатурах */
+  outline: none;               /* без синьої рамки при фокусі */
+  white-space: pre;            /* збереження пробілів */
+  overflow-x: auto;            /* горизонтальний скролл при довгому вводі */
+  margin-bottom: 0px;          /* відсутність зайвого відступу між рядками */
+  background-color: #fffefc;   /* світлий фон */
+  color: #000;                 /* чорний текст */
 }
