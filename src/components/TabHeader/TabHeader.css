@@ -16,8 +16,7 @@
   z-index: 10;
 }
 
-.play,
-.stop {
+.play {
   background-color: #ffffff;
   color: #000000;
   border: none;
@@ -29,8 +28,7 @@
   
 }
 
-.play:hover,
-.stop:hover {
+.play:hover {
   background-color: #ddd;
 }
 
