@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './TabInput.css';
+import TabSVG from './TabSVG'; // ⬅️ Імпорт SVG-компонента
 
 const TabInput = () => {
   const [, setTabData] = useState({
@@ -19,47 +20,24 @@ const TabInput = () => {
     }));
   };
 
-  const stringNames = ['E', 'B', 'G', 'D', 'A', 'E']; // знизу вгору
-
   return (
     <div className="tab-input">
       <div className="tabs-wrapper">
-        {/* Назви струн */}
-        <div className="svg-strings">
-          <svg width="30px" height="180px">
-            {stringNames.map((note, index) => (
-              <text
-                key={index}
-                x="10"
-                y={(index * 30) + 22}
-                fontSize="16"
-                fill="#888888"
-                pointerEvents="none"
-              >
-                {note}
-              </text>
-            ))}
-          </svg>
-        </div>
+        {/* SVG-шаблон як основа */}
+        <TabSVG />
 
-        {/* Рядки для табів */}
+        {/* Прозорі текстові поля поверх SVG */}
         <div className="tabs-container">
-          {stringNames.map((_, index) => {
-            const lineNumber = index + 1;
-            return (
-              <div
-                key={lineNumber}
-                className="tab-line"
-                contentEditable
-                suppressContentEditableWarning
-                spellCheck={false}
-                onInput={(e) => handleInputChange(e, lineNumber)}
-              >
-                {/* Початково можна вставити риски */}
-                {/* ---|---|---|---|--- */}
-              </div>
-            );
-          })}
+          {[1, 2, 3, 4, 5, 6].map((lineNumber) => (
+            <div
+              key={lineNumber}
+              className="tab-line"
+              contentEditable
+              suppressContentEditableWarning
+              spellCheck={false}
+              onInput={(e) => handleInputChange(e, lineNumber)}
+            />
+          ))}
         </div>
       </div>
     </div>
