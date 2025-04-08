@@ -47,3 +47,90 @@
   font-size: 16px;
   transition: background-color 0.2s ease;
 }
+.speed-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.speed-control input {
+  width: 70px;
+  padding: 8px 24px 8px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  appearance: textfield;
+}
+
+.speed-control input::-webkit-outer-spin-button,
+.speed-control input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.percent-label {
+  position: absolute;
+  right: 10px;
+  pointer-events: none;
+  color: #666;
+  font-size: 16px;
+}
+
+.bpm-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.bpm-control input {
+  width: 70px;
+  padding: 8px 24px 8px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  appearance: textfield;
+}
+
+.bpm-control input::-webkit-outer-spin-button,
+.bpm-control input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.bpm-label {
+  position: absolute;
+  right: 10px;
+  pointer-events: none;
+  color: #666;
+  font-size: 16px;
+}
+
+.time-signature-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.time-signature-control input {
+  width: 70px;
+  padding: 8px 24px 8px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  text-align: left;
+}
+
+.time-signature-label {
+  position: absolute;
+  right: 10px;
+  pointer-events: none;
+  color: #666;
+  font-size: 16px;
+}
+
+
+.time-signature-control.invalid input {
+  border-color: #ea4447;
+  background-color: #fff0f0;
+}
