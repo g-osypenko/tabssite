@@ -1,7 +1,7 @@
 .tab-row {
-    display: flex;
-    flex-direction: row;
-    gap: 4px;
-    min-height: 30px;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 30px;
+  border-bottom: 1px solid #ccc;
+}

@@ -1,0 +1,10 @@
+.tab-box {
+  width: 24px;
+  height: 24px;
+  border: 1px solid transparent;
+  margin: 1px;
+  text-align: center;
+  outline: none;
+  font-family: monospace;
+  background: transparent;
+}

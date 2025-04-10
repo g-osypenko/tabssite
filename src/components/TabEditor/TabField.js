@@ -1,38 +1,41 @@
-
-import React, { useState } from "react";
-import "./TabField.css";
+import React, { useEffect, useState } from "react";
 import TabRow from "./TabRow";
+import "./TabField.css";
 
 const TabField = () => {
+  const stringCount = 6;
+
   const [tabData, setTabData] = useState(
-    Array(6).fill([{ id: 0, value: "" }])
+    Array.from({ length: stringCount }, () => [""])
   );
 
-  const handleChange = (stringIndex, boxIndex, newValue) => {
-    const updatedRow = [...tabData[stringIndex]];
-    updatedRow[boxIndex].value = newValue;
+  // Функція для оновлення значення конкретної комірки
+  const updateBox = (rowIndex, colIndex, newValue) => {
+    setTabData((prev) => {
+      const newData = prev.map((row) => [...row]); // копія
+      newData[rowIndex][colIndex] = newValue;
 
-    // Додати новий box якщо останній не порожній
-    if (
-      boxIndex === updatedRow.length - 1 &&
-      newValue !== ""
-    ) {
-      updatedRow.push({ id: Date.now(), value: "" });
-    }
+      // Якщо змінюємо останню колонку, і в неї щось введено — додаємо нову колонку
+      const isLastColumn = colIndex === newData[rowIndex].length - 1;
+      if (isLastColumn && newValue !== "") {
+        for (let i = 0; i < newData.length; i++) {
+          newData[i].push("");
+        }
+      }
 
-    const updatedTab = [...tabData];
-    updatedTab[stringIndex] = updatedRow;
-    setTabData(updatedTab);
+      return newData;
+    });
   };
 
   return (
     <div className="tab-field">
-      {tabData.map((boxes, stringIndex) => (
+      {tabData.map((row, rowIndex) => (
         <TabRow
-          key={stringIndex}
-          boxes={boxes}
-          stringIndex={stringIndex}
-          onChange={handleChange}
+          key={rowIndex}
+          rowData={row}
+          onUpdateBox={(colIndex, newValue) =>
+            updateBox(rowIndex, colIndex, newValue)
+          }
         />
       ))}
     </div>

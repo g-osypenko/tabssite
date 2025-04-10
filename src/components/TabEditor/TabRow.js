@@ -1,15 +1,15 @@
 import React from "react";
-import "./TabRow.css";
 import TabBox from "./TabBox";
+import "./TabRow.css";
 
-const TabRow = ({ stringIndex, boxes, onBoxChange }) => {
+const TabRow = ({ rowData, onUpdateBox }) => {
   return (
     <div className="tab-row">
-      {boxes.map((value, boxIndex) => (
+      {rowData.map((value, colIndex) => (
         <TabBox
-          key={boxIndex}
+          key={colIndex}
           value={value}
-          onChange={(newValue) => onBoxChange(stringIndex, boxIndex, newValue)}
+          onChange={(newValue) => onUpdateBox(colIndex, newValue)}
         />
       ))}
     </div>
