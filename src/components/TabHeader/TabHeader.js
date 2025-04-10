@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
-import './TabHeader.css'; 
-import metronomePIC from '../Images/metronomePIC.png';
-import stopPIC from '../Images/stopPIC.png';
-import playPIC from '../Images/playPIC.png';
+import './TabHeader.css';
+import PlayButton from './Buttons/PlayButton';
+import MetronomeButton from './Buttons/MetronomeButton';
+import SpeedInput from './Buttons/SpeedInput';
+import BpmInput from './Buttons/BpmInput';
+import TimeSignatureInput from './Buttons/TimeSignatureInput';
 
 const TabHeader = () => {
-
   const [isPlaying, setIsPlaying] = useState(false);
   const [timeSignature, setTimeSignature] = useState('4/4');
 
   const togglePlay = () => {
-    setIsPlaying((prev) => !prev);
+    setIsPlaying(prev => !prev);
+  };
+
+  const handleTimeSignatureChange = (e) => {
+    setTimeSignature(e.target.value);
   };
 
   const isValidTimeSignature = (value) => {
@@ -18,55 +23,14 @@ const TabHeader = () => {
     return regex.test(value);
   };
 
-  const handleTimeSignatureChange = (e) => {
-    setTimeSignature(e.target.value);
-  };
-
   return (
     <header className="tab-header">
       <div className="tab-header-buttons">
-
-        <div className={`speed-control time-signature-control ${isValidTimeSignature(timeSignature) ? '' : 'invalid'}`}>
-          <input
-            type="text"
-            value={timeSignature}
-            onChange={handleTimeSignatureChange}
-            placeholder="4/4"
-          />
-        </div>
-
-        <div className="speed-control bpm-control">
-          <input
-            type="number"
-            id="bpmInput"
-            min="20"
-            max="300"
-            defaultValue={120}
-          />
-          <span className="bpm-label">BPM</span>
-        </div>
-
-        <div className="speed-control">
-          <input
-            type="number"
-            id="speedInput"
-            min="0"
-            defaultValue={100}
-          />
-          <span className="percent-label">%</span>
-        </div>
-
-        <button className="play" onClick={togglePlay}>
-          <img 
-            src={isPlaying ? stopPIC : playPIC} 
-            alt={isPlaying ? "Stop" : "Play"} 
-            className="icon"
-          />
-        </button>
-
-        <button className="metronomeButton">
-          <img src={metronomePIC} alt="Metronome"/>
-        </button>
+        <TimeSignatureInput value={timeSignature} onChange={handleTimeSignatureChange} isValid={isValidTimeSignature(timeSignature)} />
+        <BpmInput />
+        <SpeedInput />
+        <PlayButton isPlaying={isPlaying} togglePlay={togglePlay} />
+        <MetronomeButton />
       </div>
     </header>
   );
