@@ -1,15 +1,16 @@
 import React from "react";
 import TabBox from "./TabBox";
-import "./TabRow.css";
 
-const TabRow = ({ rowData, onUpdateBox }) => {
+const TabRow = ({ rowData, rowIndex, onUpdateBox }) => {
   return (
-    <div className="tab-row">
+    <div style={{ display: "flex" }}>
       {rowData.map((value, colIndex) => (
         <TabBox
           key={colIndex}
+          row={rowIndex}
+          col={colIndex}
           value={value}
-          onChange={(newValue) => onUpdateBox(colIndex, newValue)}
+          onChange={(val) => onUpdateBox(rowIndex, colIndex, val)}
         />
       ))}
     </div>

@@ -1,22 +1,21 @@
 import React from "react";
 import "./TabBox.css";
 
-const TabBox = ({ value, onChange }) => {
-  const handleInput = (e) => {
-    const newValue = e.target.innerText;
-    onChange(newValue);
-  };
+const COLUMN_WIDTH = 50;
+const LINE_HEIGHT = 24;
 
+const TabBox = ({ row, col, value, onChange }) => {
   return (
-    <div
+    <input
       className="tab-box"
-      contentEditable
-      suppressContentEditableWarning
-      spellCheck={false}
-      onInput={handleInput}
-    >
-      {value}
-    </div>
+      style={{
+        left: `${col * COLUMN_WIDTH}px`,
+        top: `${row * LINE_HEIGHT - 10}px`,
+      }}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      maxLength={2}
+    />
   );
 };
 

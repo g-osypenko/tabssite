@@ -1,32 +1,50 @@
+// TabLinesSVG.js
 import React from "react";
-import "./TabLinesSVG.css";
 
-const TabLinesSVG = ({ boxCount }) => {
-  const rowHeight = 30;
-  const totalHeight = 6 * rowHeight;
-  const boxWidth = 40;
-  const totalWidth = boxCount * boxWidth;
+const LINE_HEIGHT = 24;
+const LINE_COUNT = 6;
+const COLUMN_WIDTH = 50;
 
-  const lines = [0, 1, 2, 3, 4, 5].map(i => (
-    <line
-      key={i}
-      x1="0"
-      y1={i * rowHeight + rowHeight / 2}
-      x2={totalWidth}
-      y2={i * rowHeight + rowHeight / 2}
-      stroke="#aaa"
-      strokeWidth="1"
-    />
-  ));
+const TabLinesSVG = ({ columnCount }) => {
+  const width = columnCount * COLUMN_WIDTH;
+  const height = (LINE_COUNT - 1) * LINE_HEIGHT;
 
   return (
     <svg
-      className="tablines-svg"
-      width={totalWidth}
-      height={totalHeight}
-      style={{ position: "absolute", top: 0, left: 0, zIndex: 0 }}
+      width={width}
+      height={height + 30}
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        zIndex: 0,
+      }}
     >
-      {lines}
+      {/* Горизонтальні лінії */}
+      {Array.from({ length: LINE_COUNT }).map((_, i) => (
+        <line
+          key={`h-${i}`}
+          x1={0}
+          y1={i * LINE_HEIGHT}
+          x2={width}
+          y2={i * LINE_HEIGHT}
+          stroke="gray"
+          strokeWidth={1}
+        />
+      ))}
+
+      {/* Вертикальні лінії */}
+      {Array.from({ length: columnCount }).map((_, i) => (
+        <line
+          key={`v-${i}`}
+          x1={i * COLUMN_WIDTH}
+          y1={0}
+          x2={i * COLUMN_WIDTH}
+          y2={height}
+          stroke="lightgray"
+          strokeWidth={1}
+        />
+      ))}
     </svg>
   );
 };

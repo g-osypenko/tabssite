@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TabRow from "./TabRow";
+import TabLinesSVG from "./TabLinesSVG";
 import "./TabField.css";
 
 const TabField = () => {
   const stringCount = 6;
-
   const [tabData, setTabData] = useState(
     Array.from({ length: stringCount }, () => [""])
   );
 
-  // Функція для оновлення значення конкретної комірки
   const updateBox = (rowIndex, colIndex, newValue) => {
     setTabData((prev) => {
-      const newData = prev.map((row) => [...row]); // копія
+      const newData = prev.map((row) => [...row]);
       newData[rowIndex][colIndex] = newValue;
 
-      // Якщо змінюємо останню колонку, і в неї щось введено — додаємо нову колонку
-      const isLastColumn = colIndex === newData[rowIndex].length - 1;
-      if (isLastColumn && newValue !== "") {
+      if (
+        colIndex === newData[rowIndex].length - 1 &&
+        newValue !== ""
+      ) {
         for (let i = 0; i < newData.length; i++) {
           newData[i].push("");
         }
@@ -28,16 +28,18 @@ const TabField = () => {
   };
 
   return (
-    <div className="tab-field">
-      {tabData.map((row, rowIndex) => (
-        <TabRow
-          key={rowIndex}
-          rowData={row}
-          onUpdateBox={(colIndex, newValue) =>
-            updateBox(rowIndex, colIndex, newValue)
-          }
-        />
-      ))}
+    <div className="tab-field-container">
+      <TabLinesSVG columnCount={tabData[0].length} />
+      <div className="tab-boxes">
+        {tabData.map((row, rowIndex) => (
+          <TabRow
+            key={rowIndex}
+            rowData={row}
+            rowIndex={rowIndex}
+            onUpdateBox={updateBox}
+          />
+        ))}
+      </div>
     </div>
   );
 };

@@ -1,6 +1,16 @@
-.tab-field {
+.tab-field-container {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 20px;
+  justify-content: start;
+  align-items: center;
+  margin-top: 40px;
+  width: fit-content;
+  height: 200px;
+}
+
+.tab-boxes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
 }
