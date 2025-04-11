@@ -2,8 +2,10 @@
   position: relative;
   display: flex;
   justify-content: start;
+  justify-content: center;
   align-items: center;
   margin-top: 40px;
+  margin: 150px auto 0 auto;
   width: fit-content;
   height: 200px;
   transform: translateX(-100px); /* ← сдвигаем влево на 50px */
