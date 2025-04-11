@@ -1,8 +1,5 @@
 .tab-field-container {
   position: relative;
-  display: flex;
-  justify-content: start;
-  align-items: center;
   margin-top: 40px;
   width: fit-content;
   height: 200px;
