@@ -7,6 +7,7 @@ import BpmInput from './Buttons/BpmInput';
 import TimeSignatureInput from './Buttons/TimeSignatureInput';
 
 const TabHeader = () => {
+  const [metronomeIndex, setMetronomeIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [timeSignature, setTimeSignature] = useState('4/4');
 
@@ -23,6 +24,11 @@ const TabHeader = () => {
     return regex.test(value);
   };
 
+
+  const handleMetronomeClick = () => {
+    setMetronomeIndex(prev => (prev + 1) % 4); 
+  };
+
   return (
     <header className="tab-header">
       <div className="tab-header-buttons">
@@ -30,7 +36,7 @@ const TabHeader = () => {
         <BpmInput />
         <SpeedInput />
         <PlayButton isPlaying={isPlaying} togglePlay={togglePlay} />
-        <MetronomeButton />
+        <MetronomeButton index={metronomeIndex} onClick={handleMetronomeClick} />
       </div>
     </header>
   );

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 6 37 53" width="54" height="54">
+  <path d="M32 6 L20 44 H44 L32 6 Z" fill="#4CAF50"/>
+  
+  <line x1="10" y1="6" x2="32" y2="35" stroke="grey" stroke-width="3"/>
+
+  <text x="20" y="58" font-size="15" fill="#4CAF50" font-family="Arial">in</text>
+  
+  <polygon points="36,49 36,59 46,54" fill="#4CAF50"/>
+</svg>
