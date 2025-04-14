@@ -1,6 +1,6 @@
 import React from 'react';
-import playPIC from '../../Images/playPIC.png';
-import stopPIC from '../../Images/stopPIC.png';
+import playPIC from '../../Images/playPIC.SVG';
+import stopPIC from '../../Images/stopPIC.SVG';
 
 const PlayButton = ({ isPlaying, togglePlay }) => (
   <button className="play" onClick={togglePlay}>
