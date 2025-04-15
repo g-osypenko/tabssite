@@ -1,12 +1,11 @@
 .tab-field-container {
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  margin: 150px auto 0 auto;
+  margin: 0; 
   width: fit-content;
   height: 200px;
-  transform: translateX(-100px); /* ← сдвигаем влево на 50px */
 }
 
 .tab-boxes {

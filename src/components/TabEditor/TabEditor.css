@@ -9,5 +9,6 @@
   display: flex;
   flex: 1;
   padding-top: 100px;
-  justify-content: center;
+  justify-content: flex-start; 
+  align-items: center; 
 }
