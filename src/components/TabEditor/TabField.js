@@ -1,13 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TabRow from "./TabRow";
 import TabLinesSVG from "./TabLinesSVG";
 import "./TabField.css";
 
 const TabField = () => {
   const stringCount = 6;
+  const [bpm, setBpm] = useState(120); // Значення за замовчуванням
   const [tabData, setTabData] = useState(
     Array.from({ length: stringCount }, () => [""])
   );
+
+  // Слухаємо зміни input#bpmInput
+  useEffect(() => {
+    const bpmInput = document.getElementById("bpmInput");
+    const updateBpm = () => {
+      const value = parseInt(bpmInput.value, 10);
+      if (!isNaN(value)) setBpm(value);
+    };
+
+    if (bpmInput) {
+      bpmInput.addEventListener("input", updateBpm);
+    }
+
+    return () => {
+      if (bpmInput) {
+        bpmInput.removeEventListener("input", updateBpm);
+      }
+    };
+  }, []);
 
   const updateBox = (rowIndex, colIndex, newValue) => {
     setTabData((prev) => {
@@ -29,7 +49,7 @@ const TabField = () => {
 
   return (
     <div className="tab-field-container">
-      <TabLinesSVG columnCount={tabData[0].length} />
+      <TabLinesSVG columnCount={tabData[0].length} bpm={bpm} />
       <div className="tab-boxes">
         {tabData.map((row, rowIndex) => (
           <TabRow

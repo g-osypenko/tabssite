@@ -1,12 +1,11 @@
 // TabLinesSVG.js
 import React from "react";
 
-
 const LINE_HEIGHT = 24;
 const LINE_COUNT = 6;
 const COLUMN_WIDTH = 50;
 
-const TabLinesSVG = ({ columnCount }) => {
+const TabLinesSVG = ({ columnCount, bpm }) => {
   const width = columnCount * COLUMN_WIDTH;
   const height = (LINE_COUNT - 1) * LINE_HEIGHT;
 
@@ -46,6 +45,17 @@ const TabLinesSVG = ({ columnCount }) => {
           strokeWidth={1}
         />
       ))}
+
+      {/* Текст BPM */}
+      <text
+        x={10}
+        y={height + 25}
+        fontSize="16"
+        fill="gray"
+        fontFamily="monospace"
+      >
+        {bpm} BPM
+      </text>
     </svg>
   );
 };
