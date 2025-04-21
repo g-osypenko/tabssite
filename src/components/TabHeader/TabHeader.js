@@ -5,6 +5,7 @@ import MetronomeButton from './Buttons/MetronomeButton';
 import SpeedInput from './Buttons/SpeedInput';
 import BpmInput from './Buttons/BpmInput';
 import TimeSignatureInput from './Buttons/TimeSignatureInput';
+import TuningButton from './Buttons/TuningButton';
 
 const TabHeader = () => {
   const [metronomeIndex, setMetronomeIndex] = useState(0);
@@ -37,6 +38,7 @@ const TabHeader = () => {
         <SpeedInput />
         <PlayButton isPlaying={isPlaying} togglePlay={togglePlay} />
         <MetronomeButton index={metronomeIndex} onClick={handleMetronomeClick} />
+        <TuningButton />
       </div>
     </header>
   );
