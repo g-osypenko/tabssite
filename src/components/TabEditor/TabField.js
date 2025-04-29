@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import TabRow from "./TabRow";
 import TabLinesSVG from "./TabLinesSVG";
+import TuningSVG from "./TuningSVG"; 
+import TimeSignatureSVG from "./TimeSignatureSVG";
 import "./TabField.css";
 
 const TabField = () => {
   const stringCount = 6;
-  const [bpm, setBpm] = useState(120); // Значення за замовчуванням
+  const [bpm, setBpm] = useState(120);
   const [tabData, setTabData] = useState(
     Array.from({ length: stringCount }, () => [""])
   );
@@ -49,6 +51,8 @@ const TabField = () => {
 
   return (
     <div className="tab-field-container">
+      <TuningSVG /> 
+      <TimeSignatureSVG />
       <TabLinesSVG columnCount={tabData[0].length} bpm={bpm} />
       <div className="tab-boxes">
         {tabData.map((row, rowIndex) => (

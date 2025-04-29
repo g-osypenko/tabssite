@@ -8,6 +8,10 @@ const TuningButton = () => {
 
   const handleTuningChange = (index, value) => {
     const updated = [...tuning];
+    const hasCyrillic = /[а-яіїєґ]/i.test(value);
+    const newTuning = [...tuning];
+    newTuning[index] = hasCyrillic ? defaultTuning[index] : value.toUpperCase();
+    setTuning(newTuning);
     updated[index] = value;
     setTuning(updated);
   };
