@@ -1,5 +1,5 @@
 import React from "react";
-import NoteButtons from "./NoteButtons";
+import NoteButtons from "./ButtonsSidebar/NoteButtons";
 import "./Sidebar.css";
 
 const Sidebar = () => {
