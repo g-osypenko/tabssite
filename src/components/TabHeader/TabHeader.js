@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
-import './TabHeader.css';
-import PlayButton from './Buttons/PlayButton';
-import MetronomeButton from './Buttons/MetronomeButton';
-import SpeedInput from './Buttons/SpeedInput';
-import BpmInput from './Buttons/BpmInput';
-import TimeSignatureInput from './Buttons/TimeSignatureInput';
-import TuningButton from './Buttons/TuningButton';
+import React, { useState } from "react";
+import "./TabHeader.css";
+import PlayButton from "./Buttons/PlayButton";
+import MetronomeButton from "./Buttons/MetronomeButton";
+import SpeedInput from "./Buttons/SpeedInput";
+import BpmInput from "./Buttons/BpmInput";
+import TimeSignatureInput from "./Buttons/TimeSignatureInput";
+import TuningButton from "./Buttons/TuningButton";
 
-const TabHeader = () => {
+const TabHeader = ({ isPlaying, setIsPlaying }) => {
   const [metronomeIndex, setMetronomeIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [timeSignature, setTimeSignature] = useState('4/4');
+  const [timeSignature, setTimeSignature] = useState("4/4");
 
   const togglePlay = () => {
-    setIsPlaying(prev => !prev);
+    setIsPlaying((prev) => !prev);
   };
 
   const handleTimeSignatureChange = (e) => {
@@ -25,15 +24,18 @@ const TabHeader = () => {
     return regex.test(value);
   };
 
-
   const handleMetronomeClick = () => {
-    setMetronomeIndex(prev => (prev + 1) % 4); 
+    setMetronomeIndex((prev) => (prev + 1) % 4);
   };
 
   return (
     <header className="tab-header">
       <div className="tab-header-buttons">
-        <TimeSignatureInput value={timeSignature} onChange={handleTimeSignatureChange} isValid={isValidTimeSignature(timeSignature)} />
+        <TimeSignatureInput
+          value={timeSignature}
+          onChange={handleTimeSignatureChange}
+          isValid={isValidTimeSignature(timeSignature)}
+        />
         <BpmInput />
         <SpeedInput />
         <PlayButton isPlaying={isPlaying} togglePlay={togglePlay} />
