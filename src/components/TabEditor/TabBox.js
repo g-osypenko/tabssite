@@ -5,6 +5,8 @@ const COLUMN_WIDTH = 50;
 const LINE_HEIGHT = 24;
 
 const TabBox = ({ row, col, value, onChange }) => {
+  const note = value?.note ?? ""; // захист на випадок undefined
+
   return (
     <input
       className="tab-box"
@@ -12,8 +14,10 @@ const TabBox = ({ row, col, value, onChange }) => {
         left: `${col * COLUMN_WIDTH}px`,
         top: `${row * LINE_HEIGHT - 10}px`,
       }}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
+      value={note}
+      onChange={(e) =>
+        onChange({ ...value, note: e.target.value })
+      }
       maxLength={2}
     />
   );
