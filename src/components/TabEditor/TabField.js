@@ -6,10 +6,9 @@ import TimeSignatureSVG from "./TimeSignatureSVG";
 import * as Tone from "tone";
 import "./TabField.css";
 
-const TabField = () => {
+const TabField = ({ isPlaying }) => {
   const stringCount = 6;
   const [bpm, setBpm] = useState(120);
-  const [isPlaying, setIsPlaying] = useState(false);
 
   const [tabData, setTabData] = useState(
     Array.from({ length: stringCount }, () => [
@@ -53,33 +52,41 @@ const TabField = () => {
     });
   };
 
-  // Кнопка відтворення (тільки логіка, без рендерингу кнопки тут)
-  const togglePlay = async () => {
-    setIsPlaying((prev) => !prev);
+  // 🔁 Слухаємо isPlaying з App
+  useEffect(() => {
+    if (!isPlaying) {
+      Tone.Transport.stop();
+      Tone.Transport.cancel();
+      return;
+    }
 
-    await Tone.start();
-    Tone.Transport.bpm.value = bpm;
-    Tone.Transport.stop();
-    Tone.Transport.cancel();
+    const play = async () => {
+      await Tone.start();
+      Tone.Transport.bpm.value = bpm;
+      Tone.Transport.stop();
+      Tone.Transport.cancel();
 
-    const synth = new Tone.Synth().toDestination();
-    const secondsPerBeat = 60 / bpm;
+      const synth = new Tone.Synth().toDestination();
+      const secondsPerBeat = 60 / bpm;
 
-    tabData[0].forEach((box, index) => {
-      const note = box.note;
-      if (note !== "") {
-        const fret = parseInt(note, 10);
-        const midi = 40 + fret; // базова нота E3 (мі третьої октави)
-        const time = index * secondsPerBeat;
+      tabData[0].forEach((box, index) => {
+        const note = box.note;
+        if (note !== "") {
+          const fret = parseInt(note, 10);
+          const midi = 40 + fret; // базова нота E3
+          const time = index * secondsPerBeat;
 
-        Tone.Transport.scheduleOnce((time) => {
-          synth.triggerAttackRelease(Tone.Midi(midi).toFrequency(), "8n", time);
-        }, time);
-      }
-    });
+          Tone.Transport.scheduleOnce((t) => {
+            synth.triggerAttackRelease(Tone.Midi(midi).toFrequency(), "8n", t);
+          }, time);
+        }
+      });
 
-    Tone.Transport.start();
-  };
+      Tone.Transport.start();
+    };
+
+    play();
+  }, [isPlaying, bpm, tabData]);
 
   return (
     <div className="tab-field-container">
