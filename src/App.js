@@ -7,10 +7,6 @@ import "./index.css";
 const App = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const togglePlay = () => {
-    setIsPlaying((prev) => !prev);
-  };
-
   return (
     <div className="app-container">
       <TabHeader isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
@@ -19,5 +15,6 @@ const App = () => {
     </div>
   );
 };
+
 
 export default App;
