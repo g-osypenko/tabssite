@@ -1,7 +1,7 @@
 import React from "react";
 import TabBox from "./TabBox";
 
-const TabRow = ({ rowData, rowIndex, onUpdateBox }) => {
+const TabRow = ({ rowData, rowIndex, onUpdateBox, onSelect }) => {
   return (
     <div style={{ display: "flex" }}>
       {rowData.map((value, colIndex) => (
@@ -11,6 +11,7 @@ const TabRow = ({ rowData, rowIndex, onUpdateBox }) => {
           col={colIndex}
           value={value}
           onChange={(val) => onUpdateBox(rowIndex, colIndex, val)}
+          onSelect={onSelect}
         />
       ))}
     </div>

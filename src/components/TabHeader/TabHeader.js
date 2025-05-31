@@ -1,18 +1,22 @@
-import React, { useState } from "react";
-import "./TabHeader.css";
-import PlayButton from "./Buttons/PlayButton";
-import MetronomeButton from "./Buttons/MetronomeButton";
-import SpeedInput from "./Buttons/SpeedInput";
-import BpmInput from "./Buttons/BpmInput";
-import TimeSignatureInput from "./Buttons/TimeSignatureInput";
-import TuningButton from "./Buttons/TuningButton";
+import React from 'react';
+import './TabHeader.css';
+import PlayButton from './Buttons/PlayButton';
+import MetronomeButton from './Buttons/MetronomeButton';
+import SpeedInput from './Buttons/SpeedInput';
+import BpmInput from './Buttons/BpmInput';
+import TimeSignatureInput from './Buttons/TimeSignatureInput';
+import TuningButton from './Buttons/TuningButton';
 
 const TabHeader = ({ isPlaying, setIsPlaying }) => {
-  const [metronomeIndex, setMetronomeIndex] = useState(0);
-  const [timeSignature, setTimeSignature] = useState("4/4");
+  const [metronomeIndex, setMetronomeIndex] = React.useState(0);
+  const [timeSignature, setTimeSignature] = React.useState('4/4');
 
   const togglePlay = () => {
-    setIsPlaying((prev) => !prev);
+    if (typeof setIsPlaying === "function") {
+      setIsPlaying(prev => !prev);
+    } else {
+      console.error("setIsPlaying is not a function");
+    }
   };
 
   const handleTimeSignatureChange = (e) => {
@@ -25,7 +29,7 @@ const TabHeader = ({ isPlaying, setIsPlaying }) => {
   };
 
   const handleMetronomeClick = () => {
-    setMetronomeIndex((prev) => (prev + 1) % 4);
+    setMetronomeIndex(prev => (prev + 1) % 4);
   };
 
   return (
