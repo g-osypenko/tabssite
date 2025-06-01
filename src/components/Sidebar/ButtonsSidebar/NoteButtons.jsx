@@ -41,51 +41,46 @@ const NoteButtons = ({ onDurationChange, selectedDuration }) => {
     <div className="note-buttons">
       <button 
         className={`whole-note ${activeType === 'whole' ? 'active' : ''}`} 
-        title="Whole note" 
+        title="Whole note (Q)" 
         onClick={() => handleNoteClick('whole')}
       >
         <img src={Whole} alt="Whole" />
       </button>
       <button 
         className={`half-note ${activeType === 'half' ? 'active' : ''}`} 
-        title="Half note" 
+        title="Half note (W)" 
         onClick={() => handleNoteClick('half')}
       >
         <img src={Half} alt="Half" />
       </button>
       <button 
         className={`quarter-note ${activeType === 'quarter' ? 'active' : ''}`} 
-        title="Quarter note" 
+        title="Quarter note (E)" 
         onClick={() => handleNoteClick('quarter')}
       >
         <img src={Quarter} alt="Quarter" />
       </button>
       <button 
         className={`eighth-note ${activeType === 'eighth' ? 'active' : ''}`} 
-        title="Eighth note" 
+        title="Eighth note (R)" 
         onClick={() => handleNoteClick('eighth')}
       >
         <img src={Eighth} alt="Eighth" />
       </button>
       <button 
         className={`sixteenth-note ${activeType === 'sixteenth' ? 'active' : ''}`} 
-        title="Sixteenth note" 
+        title="Sixteenth note (T)" 
         onClick={() => handleNoteClick('sixteenth')}
       >
         <img src={Sixteenth} alt="Sixteenth" />
       </button>
       <button 
         className={`thirty-second-note ${activeType === 'thirty-second' ? 'active' : ''}`} 
-        title="Thirty-second note" 
+        title="Thirty-second note (Y)" 
         onClick={() => handleNoteClick('thirty-second')}
       >
         <img src={ThirtySecond} alt="Thirty-second" />
       </button>
-      <button className="triplet" title="Triplet"></button>
-      <button className="dotted-note" title="Dotted note"></button>
-      <button className="double-dotted-note" title="Double dotted note"></button>
-      <button className="grace-note" title="Grace note"></button>
-      <button className="rest" title="Rest"></button>
     </div>
   );
 };
