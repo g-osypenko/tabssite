@@ -10,7 +10,7 @@ const TuningSVG = () => {
     setTuning(current);
   }, []);
 
-  // Оновлення при кожному ререндері (можна зробити ще кращу оптимізацію, якщо треба)
+  // Оновлення при кожному ререндері 
   useEffect(() => {
     const interval = setInterval(() => {
       const inputs = document.querySelectorAll(".tuning-inputs input");

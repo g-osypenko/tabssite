@@ -33,7 +33,7 @@ const TimeSignatureSVG = () => {
       style={{
         position: "absolute",
         top: 10,
-        left: -40, // можеш змінити, якщо хочеш далі/ближче
+        left: -40, 
         zIndex: 3,
       }}
     >
