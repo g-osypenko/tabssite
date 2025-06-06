@@ -1,17 +1,19 @@
 import { useEffect, useRef } from "react";
 import * as Tone from "tone";
+import { memoizeFrequency } from "../../utils/memoizeFrequency";
 
 const TabPlayer = ({ isPlaying, bpm, tabData }) => {
   const synthRef = useRef(null);
   const scheduledIdsRef = useRef([]);
+  const getFrequencyRef = useRef(null);
 
   useEffect(() => {
-    synthRef.current = new Tone.PolySynth(Tone.Synth).toDestination();
-    synthRef.current.volume.value = -6;
-
-    return () => {
-      synthRef.current.dispose();
-    };
+    // Мемоізована функція для кешування частот
+    getFrequencyRef.current = memoizeFrequency(([stringIndex, fret]) => {
+      const stringBaseMidi = [40, 45, 50, 55, 59, 64];
+      const midi = stringBaseMidi[stringIndex] + fret;
+      return Tone.Midi(midi).toFrequency();
+    });
   }, []);
 
   useEffect(() => {
@@ -21,9 +23,8 @@ const TabPlayer = ({ isPlaying, bpm, tabData }) => {
       Tone.Transport.cancel();
       Tone.Transport.bpm.value = bpm;
 
-      const stringBaseMidi = [40, 45, 50, 55, 59, 64];
       const columnCount = tabData[0]?.length || 0;
-      
+
       let currentTime = 0;
       scheduledIdsRef.current.forEach(id => Tone.Transport.clear(id));
       scheduledIdsRef.current = [];
@@ -40,10 +41,9 @@ const TabPlayer = ({ isPlaying, bpm, tabData }) => {
           if (note !== "") {
             const fret = parseInt(note, 10);
             if (!isNaN(fret)) {
-              const midi = stringBaseMidi[stringIndex] + fret;
-              const frequency = Tone.Midi(midi).toFrequency();
+              const frequency = getFrequencyRef.current([stringIndex, fret]);
               const durationSeconds = Tone.Time(duration).toSeconds();
-              
+
               columnNotes.push({ 
                 frequency, 
                 duration,
@@ -83,6 +83,15 @@ const TabPlayer = ({ isPlaying, bpm, tabData }) => {
     }
 
   }, [isPlaying, bpm, tabData]);
+
+  useEffect(() => {
+    synthRef.current = new Tone.PolySynth(Tone.Synth).toDestination();
+    synthRef.current.volume.value = -6;
+
+    return () => {
+      synthRef.current.dispose();
+    };
+  }, []);
 
   return null;
 };
